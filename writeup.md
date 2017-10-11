@@ -151,23 +151,23 @@ The Model column is a combination of the object detection algorithm and the base
 | SSD 512x512 | Pascal VOC 2007/2012 | Chainer |  37.1ms |
 | Faster RCNN | Pascal VOC 2007   | Chainer |  65.3ms  |
 
-As can be seen, the Chainer models are substantially faster.  The Chainer SSD models are quite fast - over 40 frames per second using GPU, and do a very good job detecting the cars as demonstrated in video below.
+As can be seen, the Chainer models are substantially faster.  The Chainer SSD models are quite fast - over 40 frames per second using GPU, and do a very good job detecting the cars as demonstrated in the videos below.
 
 Within the Tensorflow models, the SSD models are not very accurate.  They completely miss the car for very significant periods of time.  
 
-The Tensorflow Faster RCNN model has the highest accuracy of all the tested models here but is extremely slow, taking almost a full second per frame.  The accuracy is such that it picks out small cars in the opposite lane, and is the only one that detects the smaller car far ahead.  I have link to the video in the video section.
+The Tensorflow Faster RCNN model has the highest accuracy of all the tested models here but is extremely slow, taking almost a full second per frame.  The accuracy is such that it picks out small cars in the opposite lane, and is the only one that detects the smaller car far ahead.  I have a link to the video in the video section.
 
 Interestingly, the Chainer Faster RCNN model is more 'jumpy' than both the Chainer SSD models and the Tensorflow Faster RCNN model.
 
 In the end I chose the Chainer SSD models, and in the Jupyter notebook, I show results for both the 300x300 and 512x512 models.
 
-###4. Show some examples of test images to demonstrate how your pipeline is working. How did you optimize the performance of your classifier?
+### 4. Show some examples of test images to demonstrate how your pipeline is working. How did you optimize the performance of your classifier?
 
 Below is the result of running the pipeline on the test image from above.  The pipeline code is in cell `6` of the notebook.
 
-![](./pipeline_output.png)
-
 I optimized the performance of my pipeline by choosing between the different neural network models as described in the previous section.
+
+![](./pipeline_output.png)
 
 
 ## Video Implementation
@@ -179,7 +179,7 @@ Here are links to the video output for the Chainer SSD models.
 * [Chainer SSD 300x300](chainer_ssd_300.mp4)
 * [Chainer SSD 512x512](chainer_ssd_512.mp4)
 
-For reference, here is the video output for some of the other models.  The Tensorflow SSD models completely miss the car in many frames, and the Tensorflow Faster RCNN model is very good but at 900ms per frame, too slow for practical use today.
+For reference, here is the video output for some of the other models.  The Tensorflow SSD models completely miss the car in many frames, and the Tensorflow Faster RCNN model is very good but at 900ms per frame using GPU, too slow for practical use today.
 
 * [Tensorflow SSD Mobilenet](tensorflow_ssd_mobilenet.mp4)
 * [Tensorflow SSD Inception](tensorflow_ssd_inception.mp4)
@@ -209,5 +209,9 @@ Here are some areas where my final implementation can be improved.
 
 1. The model does lag a bit in detecting cars when they first 'enter' from the right side of the frame.  This can probably be improved by training on occluded samples with data augmentation.
 2. The model does not detect the cars farther ahead of the vehicle, that appear smaller.  For a real self-driving car, detecting these cars is important as part of environmental awareness.  The Tensorflow Faster RCNN model does pick them up.  One way to address this is to implement a more car-centric version of SSD that has adaptive window sizes farther away from the vehicle.
+3. It would be interesting to test on other videos such as those with different lighting conditions and shadows.
+
+It is possible that for conditions other than the fairly ideal conditions of the project video, the HOG / sliding window approaches would work better than neural network based ones.  This would be a good follow on study.
+
 
 
