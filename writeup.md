@@ -1,4 +1,4 @@
-#Vehicle Detection Project
+# Vehicle Detection Project
 
 The goals / steps of this project are the following:
 
@@ -16,9 +16,9 @@ I researched different algorithms for deep learning based object detection and w
 
 After experimentation, I got good results with the Single Shot Multibox Detector (SSD) algorithm, using Chainer as the deep learning framework.  I will describe this in more detail in the following sections.
 
-##Vehicle Detection
+## Vehicle Detection
 
-###1. Object Detection with Deep Learning
+### 1. Object Detection with Deep Learning
 
 The major advances in deep learning in recent years started with *classification*.  In classification, objects in images are classified as e.g. 'dog', 'cat', 'stop sign' etc., as we explored in the traffic sign classification project.
 
@@ -91,7 +91,7 @@ Below is the architecture of the SSD network.
 
 ![](./ssd_architecture.png)
 
-###2. Explain how (and identify where in your code) you extracted vehicles from the training images.
+### 2. Explain how (and identify where in your code) you extracted vehicles from the training images.
 
 In my implementation, I directly use ChainerCV's pretrained models for the vehicle detection task.
 
@@ -132,7 +132,7 @@ SSD output using ChainerCV's standard visualization routine - includes bounding 
 ![](./SSD-boxes.png)
 
 
-###3. Explain how you settled on your final choice of vehicle detection algorithm.
+### 3. Explain how you settled on your final choice of vehicle detection algorithm.
 
 In total, I tested 7 different combinations of frameworks and models for the full object detection vide pipeline.
 
@@ -172,7 +172,7 @@ I optimized the performance of my pipeline by choosing between the different neu
 
 ## Video Implementation
 
-###1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
+### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
 Here are links to the video output for the Chainer SSD models.
 
@@ -186,7 +186,7 @@ For reference, here is the video output for some of the other models.  The Tenso
 * [Tensorflow Faster RCNN](tensorflow_faster_rcnn.mp4)
 
 
-###2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 The Chainer SSD models do detect false positives.  They tend to sometimes detect large parts of the left side of the lane as an object as shown below.
 
@@ -201,7 +201,7 @@ The `filter_outliers` method in cell `6` rejects these outliers by removing boun
 
 ## Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+####  1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 Overall, I found the deep learning approach to object detection to work very well.  The state of the art in neural network models, frameworks, and pretrained models is such that it is possible to put together an object detection project quickly.  This includes experimenting with multiple models and algorithms to find the best one.
 
